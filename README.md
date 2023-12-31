@@ -68,7 +68,17 @@ To run this project, you will need the following:
 ### Configuration
 
 Before running the application, you need to configure the API key for photo upload. Follow these steps:
+1. Visit Bytescale to obtain an API key for photo upload.
+
+2. Create a configuration file for the API key. In the root directory of the project, create a file named appsettings.json and add the following content:
     
+    ```json
+    {
+        "AppSettings": {
+            "BytescaleApiKey": "YOUR_API_KEY_HERE"
+        }
+    }
+    ```
 
 ## Usage
 
