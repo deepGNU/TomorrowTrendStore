@@ -16,92 +16,55 @@ Welcome to the Electronic Store API project with a React frontend. This applicat
 
 ## Features
 
-- User Registration and Authentication
-- Browsing Products
-- Adding Products to Cart
-- Checkout
-- Viewing Order History
-- User Profile Management (Update Password)
-- Admin and Worker Roles
-- Admin CRUD Operations on Products, Orders, and Users
-- Worker Ability to Edit Orders and Add Products
-- Photo Upload for Products and User Profiles (Requires API Key)
+### User Capabilities
+- **Account Registration and Authentication**: Users can sign up for an account and log in to access the store.
+- **Product Interaction**: View various electronic products and add them to the shopping cart.
+- **Cart Management**: The shopping cart icon flickers in the navigation bar when items are added. Users can modify their cart contents.
+- **Order Management**: View personal order history under 'My Orders' in the navigation menu.
+- **Profile Management**: Users can update their profiles and passwords through 'My Profile'.
+
+### Admin and Worker Functionalities
+- **CRUD Operations**: Perform create, read, update, and delete operations on store resources.
+- **Role-Specific Access**:
+  - *Regular Workers*: Can edit orders and add new products.
+  - *Admins*: Have full control over products, orders, and user accounts.
+- **Management Access**: Accessible via the 'Manage Store' menu for logged-in workers and admins.
+
+### Photo Integration
+- **Photo Uploads**: Both products and user accounts support photo inclusion.
+- **API Integration**: To enable photo uploads, obtain an API key from [Bytescale](https://www.bytescale.com). A 2-week free trial is available, followed by a paid subscription.
+- **Functionality Without API Key**: Adding products and users without photos is possible without the API key.
 
 ## Getting Started
 
 ### Prerequisites
-
-To run this project, you will need the following:
-
-- .NET Core SDK (3.1 or higher)
-- Node.js and npm (Node Package Manager)
-- Visual Studio or Visual Studio Code (optional but recommended)
-- Bytescale API Key for Photo Upload (optional)
+- .NET SDK
+- Node.js and npm (for React)
+- Visual Studio or a preferred .NET IDE
+- A modern web browser
 
 ### Installation
+1. Clone the repository to your local machine.
+2. Navigate to the project directory and install the necessary packages:
+   - For .NET backend: `dotnet restore`
+   - For React frontend: `npm install`
+3. Obtain the Bytescale API key for photo upload functionality.
+4. Configure the environment variables with your database and API credentials.
 
-1. Clone this repository to your local machine:
+### Running the Application
+1. Start the .NET backend server: `dotnet run` inside the backend directory.
+2. Launch the React frontend: `npm start` in the frontend directory.
+3. Access the application via the browser at `http://localhost:3000`.
 
-   ```bash
-   git clone https://github.com/your-username/electronic-store.git
-   ```
+## Documentation
+For a detailed understanding of each component, refer to the documentation folder in the project repository.
 
-2. Navigate to the project directory:
+## Support and Contribution
+For support, contact [Support Email]. To contribute, please follow the contribution guidelines outlined in CONTRIBUTING.md.
 
-    ```bash
-    cd electronic-store
-    ```
+## License
+This project is licensed under the [License Name] - see the LICENSE.md file for details.
 
-3. Install backend dependencies using .NET CLI:
+---
 
-    ```bash
-    dotnet restore
-    ```
-
-4. Navigate to the ClientApp directory and install frontend dependencies using npm:
-
-    ```bash
-    cd ClientApp
-    npm install
-    ```
-
-### Configuration
-
-Before running the application, you need to configure the API key for photo upload. Follow these steps:
-1. Visit Bytescale to obtain an API key for photo upload.
-
-2. Create a configuration file for the API key. In the root directory of the project, create a file named appsettings.json and add the following content:
-    
-    ```json
-    {
-        "AppSettings": {
-            "BytescaleApiKey": "YOUR_API_KEY_HERE"
-        }
-    }
-    ```
-
-## Usage
-
-### User
-
-- **Register:** Sign up for an account using the registration page.
-- **Sign In:** Log in with your credentials.
-- **Browse Products:** Explore the electronic store's product catalog.
-- **Add to Cart:** Select products and add them to your shopping cart.
-- **Checkout:** Proceed to the checkout page to complete your purchase.
-- **View Orders:** Access your order history and view order details in the "My Orders" section.
-- **Update Profile:** Modify your user profile and change your password in the "My Profile" section.
-
-### Admin
-
-- **Log In:** Admins can log in using their credentials.
-- **Manage Store:** Access the "Manage Store" menu to perform CRUD operations on Products, Orders, and Users.
-  - **Products:** Add, edit, and delete products.
-  - **Orders:** View and manage all orders.
-  - **Users:** Manage user accounts, including role assignment.
-
-### API Key for Photo Upload
-
-This project supports uploading photos for products and user profiles, but it requires an API key from Bytescale for photo uploads. You can obtain a free trial API key from Bytescale for a two-week period. Afterward, this service may become paid.
-
-Without the API key, you can still add products and users to the store, but you won't be able to upload photos for them.
+*Note: This README is subject to updates. For the latest information, always refer to the latest version in the repository.*
