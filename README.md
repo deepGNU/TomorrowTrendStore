@@ -1,18 +1,8 @@
-# Electronic Store API with React Frontend
+# .NET API with React Frontend - Electronic Store Project
 
-Welcome to the Electronic Store API project with a React frontend. This application allows users to interact with an electronic store, perform various actions such as registering, signing in, browsing products, adding items to their cart, and checking out. Additionally, it provides administrative and worker functionalities for managing store resources. Please read this README.md thoroughly to understand the project's contents, functionality, and usage.
+## Introduction
 
-## Table of Contents
-
-1. [Features](#features)
-2. [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-   - [Configuration](#configuration)
-3. [Usage](#usage)
-   - [User](#user)
-   - [Admin](#admin)
-4. [API Key for Photo Upload](#api-key-for-photo-upload)
+Welcome to our .NET API project featuring a React frontend, designed for an electronic store platform. This application offers a comprehensive e-commerce experience, allowing users to register, browse products, manage their carts, and complete purchases. It also includes specialized functionalities for admin and worker roles, enhancing the management of store resources.
 
 ## Features
 
@@ -55,15 +45,6 @@ Welcome to the Electronic Store API project with a React frontend. This applicat
 1. Start the .NET backend server: `dotnet run` inside the backend directory.
 2. Launch the React frontend: `npm start` in the frontend directory.
 3. Access the application via the browser at `http://localhost:3000`.
-
-## Documentation
-For a detailed understanding of each component, refer to the documentation folder in the project repository.
-
-## Support and Contribution
-For support, contact [Support Email]. To contribute, please follow the contribution guidelines outlined in CONTRIBUTING.md.
-
-## License
-This project is licensed under the [License Name] - see the LICENSE.md file for details.
 
 ---
 
