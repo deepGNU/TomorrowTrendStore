@@ -127,7 +127,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{productId:int}")]
-        [Authorize(Policy = "AdminOrWorker")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult UpdateProduct(int productId, Product product)
         {
             if (product is null)
@@ -193,7 +193,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{productId:int}")]
-        [Authorize(Policy = "AdminOrWorker")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult DeleteProduct(int productId)
         {
             try

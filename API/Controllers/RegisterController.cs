@@ -44,7 +44,6 @@ namespace API.Controllers
 
                 var newUser = _userRepo.Create(user);
 
-                //return CreatedAtRoute("GetUser", new { userId = user.Id }, user);
                 return Ok(newUser);
             }
             catch (Exception ex)

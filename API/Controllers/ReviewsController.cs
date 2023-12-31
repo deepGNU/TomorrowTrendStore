@@ -48,7 +48,6 @@ namespace API.Controllers
 
                 var reviews = _reviewRepo.FindByCondition(condition).Include(r => r.User).ToList();
 
-                //var reviewsReversed = reviews.ToList().Reverse();
                 reviews.Reverse();
 
                 return Ok(reviews);
@@ -104,7 +103,6 @@ namespace API.Controllers
                 UpdateProductRating(product);
                 
                 return Ok(createdReview);
-                //return CreatedAtRoute("ReviewById", new { reviewId = review.Id }, review);
             }
             catch (Exception ex)
             {

@@ -234,56 +234,5 @@ namespace API.Controllers
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }
-
-        //[HttpPost("{orderId:int}/AddProduct/{productId:int}")]
-        //public IActionResult AddProductToOrder(int orderId, int productId)
-        //{
-        //    try
-        //    {
-        //        var order = _orderRepo.FindByCondition(o => o.Id == orderId)
-        //                    .Include(o => o.OrderLines)
-        //                    .ThenInclude(ol => ol.Product)
-        //                    .FirstOrDefault();
-
-        //        if (order is null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        var product = _productRepo.FindByCondition(p => p.Id == productId).FirstOrDefault();
-
-        //        if (product is null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        var orderLine = order.OrderLines.FirstOrDefault(ol => ol.ProductId == productId);
-
-        //        if (orderLine is null)
-        //        {
-        //            orderLine = new OrderLine
-        //            {
-        //                ProductId = productId,
-        //                Quantity = 1,
-        //                ShopOrderId = orderId,
-        //                Product = product
-        //            };
-
-        //            _orderLineRepo.Create(orderLine);
-        //        }
-        //        else
-        //        {
-        //            orderLine.Quantity++;
-        //            _orderLineRepo.Update(orderLine);
-        //        }
-
-        //        return Ok(order);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Failed to add product to order: {}", ex);
-        //        return StatusCode(500, "Internal server error. Please try again later.");
-        //    }
-        //}
     }
 }

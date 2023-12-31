@@ -44,6 +44,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{userId:int}")]
+        [Authorize(Policy = "AdminOrWorker")]
         public IActionResult GetUser(int userId)
         {
             try
@@ -124,32 +125,6 @@ namespace API.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult CreateUser(User user)
-        //{
-        //    try
-        //    {
-        //        if (user is null)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        User createdUser = _userRepo.Create(user);
-
-        //        return Created("Users", createdUser);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Failed to create user: {}", ex);
-        //        return StatusCode(500, "Internal server error. Please try again later.");
-        //    }
-        //}
-
         [HttpGet("Loggedin")]
         public IActionResult GetLoggedInUser()
         {
@@ -174,6 +149,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{userId:int}")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult UpdateUser(int userId, User user)
         {
             try
@@ -220,6 +196,53 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut("UpdatePassword/{userId:int}")]
+        public IActionResult UpdatePassword(int userId, [FromBody] UpdatePasswordModel model)
+        {
+            try
+            {
+                if (model is null)
+                {
+                    return BadRequest();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+
+                int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int loggedInUserId);
+
+                if (userId != loggedInUserId)
+                {
+                    return Unauthorized();
+                }
+
+                var existingUser = _userRepo.FindByCondition(u => u.Id == userId).FirstOrDefault();
+
+                if (existingUser is null)
+                {
+                    return NotFound();
+                }
+
+                if (!PasswordHashingService.VerifyPassword(model.OldPassword, existingUser.PasswordHash))
+                {
+                    return Unauthorized("Old password is incorrect.");
+                }
+
+                existingUser.PasswordHash = PasswordHashingService.HashPassword(model.NewPassword);
+
+                User updatedUser = _userRepo.Update(existingUser);
+
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to update user password: {}", ex);
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
+        }
+
         [HttpDelete("{userId:int}")]
         [Authorize(Policy = "AdminOnly")]
         public IActionResult DeleteUser(int userId)
@@ -250,33 +273,5 @@ namespace API.Controllers
                 return StatusCode(500, "Internal server error. Please try again later.");
             }
         }
-
-        //[HttpGet("{userId}/Cart")]
-        //public IActionResult GetCart(int userId)
-        //{
-        //    try
-        //    {
-        //        var user = _userRepo.FindByCondition(u => u.Id == userId)
-        //                    .Include(u => u.Orders).FirstOrDefault();
-
-        //        if (user is null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        var cart = user.Orders.Where(o => o.Status == Status.Cart.ToString())
-        //                    .SingleOrDefault();
-        //            //from order in user.Orders
-        //            //       where order.Status == Status.Cart.ToString()
-        //            //       select order;
-
-        //        return Ok(cart);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError("Failed to get cart: {}", ex);
-        //        return StatusCode(500, "Internal server error. Please try again later.");
-        //    }
-        //}
     }
 }

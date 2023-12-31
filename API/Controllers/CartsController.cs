@@ -75,14 +75,6 @@ namespace API.Controllers
         [HttpPost("Orderlines")]
         public IActionResult AddItemToCart([FromBody] int productId)
         {
-            //int? productId = valuePairs.GetValue("productId")?.ToObject<int>();
-
-            //if (productId is null)
-            //{
-            //    return BadRequest("Orderline must include product ID.");
-            //}
-
-            //int quantity = valuePairs.GetValue("quantity")?.ToObject<int>() ?? 1;
             var product = _productRepo.FindByCondition(p => p.Id == productId).FirstOrDefault();
 
             if (product is null)
@@ -118,16 +110,55 @@ namespace API.Controllers
 
             _orderLineRepo.Create(newLine);
 
+            cart.TotalPrice += product.Price;
+
+            _orderRepo.Update(cart);
+
             return Ok(cart);
         }
 
         [HttpPut("{cartId:int}/Orderlines/{orderLineId:int}")]
         public IActionResult UpdateQuantityInLine(int cartId, int orderLineId, [FromBody] int newQuantity)
         {
-            //var orderLine = _orderLineRepo.FindByCondition(ol => ol.Id == orderLineId)
-            //                .Include(ol => ol.Product)
-            //                .FirstOrDefault();
+          var cart = _orderRepo.FindByCondition(o => o.Id == cartId)
+                        .Include(o => o.OrderLines)
+                        .ThenInclude(ol => ol.Product)
+                        .FirstOrDefault();
 
+            if (cart is null || cart.Status != Status.Cart.ToString())
+            {
+                return NotFound();
+            }
+
+            var orderLine = cart.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
+
+            if (orderLine is null)
+            {
+                return NotFound();
+            }
+
+            bool isAdmin = User.IsInRole(UserType.Admin.ToString());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            if (!isAdmin && userId != cart.UserId.ToString())
+            {
+                return Unauthorized();
+            }
+
+            orderLine.Quantity = newQuantity;
+            orderLine.Price = orderLine.Product.Price * newQuantity;
+
+            var updatedOrderLine = _orderLineRepo.Update(orderLine);
+
+            cart.TotalPrice = cart.OrderLines.Sum(ol => ol.Price);
+            _orderRepo.Update(cart);
+
+            return Ok(updatedOrderLine);
+        }
+
+        [HttpDelete("{cartId:int}/Orderlines/{orderLineId:int}")]
+        public IActionResult DeleteLineFromOrder(int cartId, int orderLineId)
+        {
             var cart = _orderRepo.FindByCondition(o => o.Id == cartId)
                         .Include(o => o.OrderLines)
                         .ThenInclude(ol => ol.Product)
@@ -147,45 +178,16 @@ namespace API.Controllers
 
             bool isAdmin = User.IsInRole(UserType.Admin.ToString());
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var userIdOnOrder = _orderRepo.FindByCondition(o => o.Id == orderLine.ShopOrderId)
-            //                        .Select(o => o.UserId)
-            //                        .FirstOrDefault();
 
             if (!isAdmin && userId != cart.UserId.ToString())
             {
                 return Unauthorized();
             }
 
-            orderLine.Quantity = newQuantity;
-            orderLine.Price = orderLine.Product.Price * newQuantity;
-
-            var updatedOrderLine = _orderLineRepo.Update(orderLine);
-
-            return Ok(updatedOrderLine);
-        }
-
-        [HttpDelete("Orderlines/{orderLineId:int}")]
-        public IActionResult DeleteLineFromOrder(int orderLineId)
-        {
-            var orderLine = _orderLineRepo.FindByCondition(ol => ol.Id == orderLineId).FirstOrDefault();
-
-            if (orderLine is null)
-            {
-                return NotFound();
-            }
-
-            bool isAdmin = User.IsInRole(UserType.Admin.ToString());
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userIdOnOrder = _orderRepo.FindByCondition(o => o.Id == orderLine.ShopOrderId)
-                                    .Select(o => o.UserId)                
-                                    .FirstOrDefault();
-
-            if (!isAdmin && userId != userIdOnOrder.ToString())
-            {
-                return Unauthorized();
-            }
-
             _orderLineRepo.Delete(orderLine);
+
+            cart.TotalPrice = cart.OrderLines.Sum(ol => ol.Price);
+            _orderRepo.Update(cart);
 
             return NoContent();
         }

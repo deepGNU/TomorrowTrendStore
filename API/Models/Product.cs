@@ -8,7 +8,7 @@ namespace API.Models
         public int Id { get; set; }
 
         [Required]
-        public int ProductCategoryId { get; set; }
+        public int? ProductCategoryId { get; set; }
 
         [Required]
         [MaxLength(50)]
