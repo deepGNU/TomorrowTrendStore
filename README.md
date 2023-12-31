@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to our .NET API project featuring a React frontend, designed for an electronic store platform. This application offers a comprehensive e-commerce experience, allowing users to register, browse products, manage their carts, and complete purchases. It also includes specialized functionalities for admin and worker roles, enhancing the management of store resources.
+Welcome to my .NET API project featuring a React frontend, designed for an electronic store platform. This application offers a comprehensive e-commerce experience, allowing users to register, browse products, manage their carts, and complete purchases. It also includes specialized functionalities for admin and worker roles, allowing the management of store resources.
 
 ## Features
 
