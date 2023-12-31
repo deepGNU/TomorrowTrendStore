@@ -1,0 +1,21 @@
+.edit-product-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.edit-product-div img {
+    height: 150px;
+    border-radius: 15px;
+}
+
+.btns-edit-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}

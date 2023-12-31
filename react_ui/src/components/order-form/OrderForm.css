@@ -1,0 +1,18 @@
+.order-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    padding: 20px;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.order-form input {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 2px solid var(--neon-blue);
+    background-color: var(--background-dark);
+    color: var(--neon-blue);
+}

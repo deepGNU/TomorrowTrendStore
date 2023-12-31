@@ -1,0 +1,5 @@
+.cart {
+    padding: 30px;
+    color: var(--neon-blue);
+    background-color: rgba(0, 0, 0, 0.6);
+}

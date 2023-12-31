@@ -1,0 +1,11 @@
+.star-rating {
+    font-size: 24px;
+    color: var(--neon-yellow);
+    text-shadow: none;
+}
+
+.num-ratings {
+    font-size: 14px;
+    color: white;
+    margin-left: 7px;
+}

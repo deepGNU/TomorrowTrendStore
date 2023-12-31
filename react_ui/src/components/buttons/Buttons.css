@@ -1,0 +1,58 @@
+.btn-neon-card {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    color: black;
+    background-color: #00f0ff;
+    box-shadow: 0 4px 6px rgba(0, 240, 255, 0.4);
+    cursor: pointer;
+}
+
+.btn-neon-card:hover {
+    box-shadow: 0 0 20px 4px #8A2BE2;
+    background-color: #ff4dff;
+    border-color: #ff4dff;
+}
+
+.btn-neon-card:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    box-shadow: none;
+    border-color: #aaa;
+}
+
+.btn-neon-card * {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.notice-me {
+    animation: colorShift 5s infinite alternate;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.notice-me:hover {
+    animation: none;
+    transform: scale(1.1);
+}
+
+@keyframes colorShift {
+    0% {
+        background-color: #00f0ff;
+        box-shadow: 0 0 10px 4px #00f0ff;
+    }
+
+    50% {
+        background-color: #ff4dff;
+    }
+
+    100% {
+        background-color: #00f0ff;
+    }
+}

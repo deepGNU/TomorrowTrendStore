@@ -1,0 +1,13 @@
+.top-section {
+    display: flex;
+    position: fixed;
+    justify-content: space-evenly;
+    gap: 5%;
+    align-items: center;
+    color: var(--neon-blue);
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    z-index: 10;
+    margin: 0;
+    padding: 5px;
+}

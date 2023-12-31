@@ -1,0 +1,25 @@
+.review-div {
+    padding: 20px;
+    box-shadow: 0 0 10px #ccc;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+    width: 60%;
+    margin: 15px auto;
+    border-radius: 15px;
+}
+
+.review-div img {
+    width: 50px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-user {
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+}

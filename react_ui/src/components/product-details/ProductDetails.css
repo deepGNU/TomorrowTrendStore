@@ -1,0 +1,25 @@
+.product-details-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    box-shadow: 0 0 10px #ccc;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.product-details-div img {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid var(--neon-blue);
+    border-radius: 15px;
+    grid-column: 1;
+    object-fit: cover;
+}
+
+.right-col {
+    grid-column: 2;
+}
+
+.bottom-row {
+    grid-column: 1 / span 2;
+}

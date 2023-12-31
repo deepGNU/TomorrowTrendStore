@@ -1,0 +1,137 @@
+.user-form-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--neon-blue);
+  background-color: var(--background-dark);
+}
+
+.user-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 10px;
+  height: fit-content;
+  padding: 0 10px;
+  padding: 20px 20px 0;
+  color: var(--neon-blue);
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: fit-content;
+  padding: 0 10px;
+  padding: 20px 20px 0;
+  color: var(--neon-blue);
+}
+
+.user-form-field {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.user-form-field input,
+select {
+  border-radius: 10px;
+  border: 2px solid var(--neon-blue);
+  padding-left: 10px;
+}
+
+.user-form-image {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.user-form-field input.password-mismatch {
+  border: 2px solid red;
+  box-shadow: 0 0 10px 0 red;
+}
+
+.loader {
+  position: absolute;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.user-form {
+  display: grid;
+  gap: 10px;
+}
+
+.user-form h1 {
+  margin-bottom: 10px;
+}
+
+.user-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 3px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.password-mismatch {
+  border: 1px solid red;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.user-form {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 480px) {
+  .user-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.user-form-field {
+  display: flex;
+  flex-direction: column;
+}

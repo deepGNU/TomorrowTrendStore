@@ -1,0 +1,7 @@
+.edit-products-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 120px 70px 70px;
+}

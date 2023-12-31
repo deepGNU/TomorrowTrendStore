@@ -1,0 +1,88 @@
+.product-form-wrapper {
+    position: relative;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.product-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 0 10px;
+    padding: 20px;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.product-form-right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 0 10px;
+    padding: 20px 20px 0;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.submit-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.product-form input {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 2px solid var(--neon-blue);
+    background-color: var(--background-dark);
+    color: var(--neon-blue);
+}
+
+.product-form textarea {
+    width: 35%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid var(--neon-blue);
+    background-color: var(--background-dark);
+    color: var(--neon-blue);
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+    grid-column: 2;
+}
+
+.form-field img {
+    height: 200px;
+    width: calc(100% + 40px);
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+.product-form-field-photo {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 20px;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+    grid-column: 1;
+}
+
+.submit-btn {
+    width: 300px;
+    margin: 10px 0;
+}

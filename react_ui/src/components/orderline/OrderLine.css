@@ -1,0 +1,35 @@
+.orderline-wrapper {
+    width: fit-content;
+    padding: 2rem;
+    margin: 1rem auto;
+    border: 3px solid var(--neon-blue);
+    border-radius: 15px;
+    color: var(--neon-blue);
+    background-color: var(--background-dark);
+}
+
+.orderline-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    width: 100%;
+}
+
+.orderline-div * {
+    width: 200px;
+}
+
+.orderline-div img {
+    float: left;
+    object-fit: cover;
+    width: 200px;
+    height: fit-content;
+    border: 2px solid var(--neon-blue);
+    border-radius: 10%;
+}
+
+.quantity-select {
+    width: 100%;
+}

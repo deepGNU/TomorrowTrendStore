@@ -1,0 +1,78 @@
+.retrowave-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height);
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.contact-info,
+.social-links {
+    flex: 1;
+}
+
+.contact-info h3,
+.social-links h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links ul li {
+    margin-bottom: 10px;
+}
+
+.social-icon {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.social-icon:hover {
+    background-color: #ff00ff;
+    color: #000;
+}
+
+.facebook {
+    background-color: #1877f2;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #ff00ff, #00ff00, #00ffff, #ff00ff);
+    background-size: 300% 300%;
+    animation: gradientBG 6s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}

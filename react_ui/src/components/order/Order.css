@@ -1,0 +1,6 @@
+.order-card {
+    border: solid black 2px;
+    border-radius: 15px;
+    width: fit-content;
+    margin: 10px;
+}
