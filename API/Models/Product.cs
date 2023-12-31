@@ -38,7 +38,7 @@ namespace API.Models
         [Column(TypeName = "decimal(2,1)")]
         public decimal AverageRating { get; set; }
 
-        public int? NumberOfRatings { get; set; } = null;
+        public int NumberOfRatings { get; set; } = 0;
 
         [Required]
         public bool IsFeatured { get; set; } = false;
