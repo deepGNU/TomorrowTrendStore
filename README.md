@@ -48,16 +48,22 @@ To run this project, you will need the following:
 
 2. Navigate to the project directory:
 
+    ```bash
     cd electronic-store
+    ```
 
 3. Install backend dependencies using .NET CLI:
 
+    ```bash
     dotnet restore
+    ```
 
 4. Navigate to the ClientApp directory and install frontend dependencies using npm:
 
+    ```bash
     cd ClientApp
     npm install
+    ```
 
 ### Configuration
 
@@ -67,4 +73,35 @@ Before running the application, you need to configure the API key for photo uplo
 
     2. Create a configuration file for the API key. In the root directory of the project, create a file named appsettings.json and add the following content:
 
-    ``````
+    ```json
+    {
+    "AppSettings": {
+        "BytescaleApiKey": "YOUR_API_KEY_HERE"
+        }
+    }
+    ```
+## Usage
+
+### User
+
+- **Register:** Sign up for an account using the registration page.
+- **Sign In:** Log in with your credentials.
+- **Browse Products:** Explore the electronic store's product catalog.
+- **Add to Cart:** Select products and add them to your shopping cart.
+- **Checkout:** Proceed to the checkout page to complete your purchase.
+- **View Orders:** Access your order history and view order details in the "My Orders" section.
+- **Update Profile:** Modify your user profile and change your password in the "My Profile" section.
+
+### Admin
+
+- **Log In:** Admins can log in using their credentials.
+- **Manage Store:** Access the "Manage Store" menu to perform CRUD operations on Products, Orders, and Users.
+  - **Products:** Add, edit, and delete products.
+  - **Orders:** View and manage all orders.
+  - **Users:** Manage user accounts, including role assignment.
+
+### API Key for Photo Upload
+
+This project supports uploading photos for products and user profiles, but it requires an API key from Bytescale for photo uploads. You can obtain a free trial API key from Bytescale for a two-week period. Afterward, this service may become paid.
+
+Without the API key, you can still add products and users to the store, but you won't be able to upload photos for them.
