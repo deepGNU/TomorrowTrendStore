@@ -207,6 +207,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{orderId:int}")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult DeleteOrder(int orderId)
         {
             try

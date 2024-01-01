@@ -2,10 +2,11 @@ import './Order.css'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deleteOrderAPI } from '../../api/resources/orders'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import BtnNeon from '../buttons/BtnNeon'
 
 const Order = ({ order }) => {
+    const userRole = useSelector(state => state.currentUser.role)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -34,8 +35,8 @@ const Order = ({ order }) => {
             <p>Order Date: {order?.orderDate}</p>
             <p>Order Status: {order?.status}</p>
 
-            <BtnNeon text={'Delete'} onClick={handleDelete} />
-            <BtnNeon text={'Edit'} onClick={handleEditClick} />
+            {(userRole === 'Admin') && <BtnNeon text={'Delete'} onClick={handleDelete} />}
+            {(['Admin', 'Worker'].includes(userRole)) && <BtnNeon text={'Edit'} onClick={handleEditClick} />}
         </div>
     )
 }
