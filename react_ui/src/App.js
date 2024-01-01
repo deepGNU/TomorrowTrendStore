@@ -51,8 +51,8 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<h1>Contact</h1>} />
-        <Route path='/my-orders' element={<MyOrders />} />
-        <Route path='/my-profile' element={<MyProfile />} />
+        <Route path='/my-orders' element={isLoggedIn ? <MyOrders /> : <Login />} />
+        <Route path='/my-profile' element={isLoggedIn ? <MyProfile /> : <Login />} />
         <Route path='/products/:productId' element={<ProductDetails />} />
         <Route path='/unauthorized' element={<h1>Unauthorized</h1>} />
         <Route path="/user-form" element={<UserForm />} />
