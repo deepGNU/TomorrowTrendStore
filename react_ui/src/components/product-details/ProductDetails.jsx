@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         updatePage()
-    })
+    }, [productId])
 
     const handleReviewAdded = (review) => {
         updatePage()
