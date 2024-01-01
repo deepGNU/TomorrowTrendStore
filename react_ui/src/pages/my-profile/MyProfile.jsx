@@ -24,7 +24,7 @@ const MyProfile = () => {
             const user = await getLoggedInUserAPI(myId)
             setMyUser(user)
         }
-        fetchMyUser()
+        if (myId) fetchMyUser()
     }, [myId])
 
     return (

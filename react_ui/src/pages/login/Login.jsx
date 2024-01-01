@@ -4,7 +4,6 @@ import { login } from '../../api/resources/login'
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getLoggedInUserAPI } from '../../api/resources/users'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -20,7 +19,6 @@ const Login = () => {
         setPassword('')
         e.target.reset()
         if (loginSucceeded) {
-            getLoggedInUserAPI(dispatch)
             navigate('/')
         }
     }
