@@ -15,7 +15,7 @@ const BtnAddToCart = ({ product }) => {
     return (
         <div>
             <button
-                className='btn-neon-card notice-me'
+                className='btn-neon-card notice-me btn-add-to-cart'
                 onClick={handleAddToCart}
                 title='Add to cart'
             >
