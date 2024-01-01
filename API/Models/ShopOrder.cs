@@ -19,7 +19,7 @@ namespace API.Models
 
         [Range(0, 99999999.99)]
         [Column(TypeName = "decimal(10,2)")]
-        public decimal? TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; } = 0M;
 
         public List<OrderLine> OrderLines { get; set; } = new();
     }
