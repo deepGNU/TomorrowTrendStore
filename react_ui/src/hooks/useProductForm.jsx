@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom"
 import { addProductAPI } from "../api/resources/products"
 import Swal from "sweetalert2"
 
-const imageUploadUnsuccessfulMessage = 'There was an error uploading the image. Do you want to continue without uploading the image?'
-
 const useProductForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -68,6 +66,24 @@ const useProductForm = () => {
     const handleCreateSubmit = async (event) => {
         event.preventDefault()
 
+        if (!/^\d+(\.\d{0,2})?$/.test(priceInputRef.current.value)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid price, up to 2 decimal places!',
+            })
+            return;
+        }
+
+        if (!/^\d+$/.test(stockInputRef.current.value)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid integer for the stock number!',
+            })
+            return;
+        }
+
         if (!imageFileToUpload) {
             addProductAPI(dispatch, getUpdatedProduct())
             navigate(-1)
@@ -77,8 +93,18 @@ const useProductForm = () => {
         const uploadedImageURL = await handleImageUpload()
 
         if (!uploadedImageURL) {
-            const continueAnyway = window.confirm(imageUploadUnsuccessfulMessage)
-            if (!continueAnyway) { return }
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error uploading the image.',
+                showCancelButton: true,
+                confirmButtonText: 'Continue Anyway',
+            }).then((result) => {
+                if (!result.isConfirmed) return
+                addProductAPI(dispatch, getUpdatedProduct())
+                navigate(-1)
+            })
+            return
         }
 
         dispatch(addProductAPI({ ...getUpdatedProduct(), imageURL: uploadedImageURL }))
@@ -115,12 +141,23 @@ const useProductForm = () => {
         const uploadedImageURL = await handleImageUpload()
 
         if (!uploadedImageURL) {
-            alert('Image upload unsuccessful')
-            const continueAnyway = window.confirm(imageUploadUnsuccessfulMessage)
-            if (!continueAnyway) { return }
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error uploading the image.',
+                showCancelButton: true,
+                confirmButtonText: 'Continue Anyway',
+            }).then((result) => {
+                if (!result.isConfirmed) return
+                editProductAPI(dispatch, getUpdatedProduct())
+                navigate(-1)
+            })
+            return
         }
 
         await editProductAPI(dispatch, { ...getUpdatedProduct(), imageURL: uploadedImageURL })
+        alert('you should not be here, updating product')
+
         navigate(-1)
     }
 
