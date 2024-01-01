@@ -96,7 +96,7 @@ const useProductForm = () => {
             await Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'There was an error uploading the image.',
+                text: 'There was an error uploading the image. Do you want to continue without uploading the image?',
                 showCancelButton: true,
                 confirmButtonText: 'Continue Anyway',
             }).then((result) => {
@@ -144,7 +144,7 @@ const useProductForm = () => {
             await Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'There was an error uploading the image.',
+                text: 'There was an error uploading the image. Do you want to continue without uploading the image?',
                 showCancelButton: true,
                 confirmButtonText: 'Continue Anyway',
             }).then((result) => {

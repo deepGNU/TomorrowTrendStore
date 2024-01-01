@@ -10,8 +10,6 @@ import { login } from '../api/resources/login'
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'
 
-const imageUploadUnsuccessfulMessage = 'There was an error uploading the image. Do you want to continue without uploading the image?'
-
 const useUserForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -104,7 +102,6 @@ const useUserForm = () => {
 
     const getUpatedUser = () => {
         return {
-            // ...userToEdit,
             id: userToEdit?.id ?? 0,
             type,
             username,
@@ -130,7 +127,7 @@ const useUserForm = () => {
             alert('Please enter a valid phone number.')
             setPhoneNumber('')
             return
-            
+
         }
 
         if (!passwordsMatch) {
@@ -162,8 +159,17 @@ const useUserForm = () => {
         const uploadedImageURL = await handleImageUpload()
 
         if (!uploadedImageURL) {
-            const continueAnyway = window.confirm(imageUploadUnsuccessfulMessage)
-            if (!continueAnyway) { return }
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error uploading the image. Do you want to continue without uploading the image?',
+                showCancelButton: true,
+                confirmButtonText: 'Continue Anyway',
+            }).then((result) => {
+                if (!result.isConfirmed) return
+                registerUser(getUpatedUser())
+            })
+            return
         }
 
         registerUser({ ...getUpatedUser(), profileImageURL: uploadedImageURL })
@@ -200,8 +206,18 @@ const useUserForm = () => {
         const uploadedImageURL = await handleImageUpload()
 
         if (!uploadedImageURL) {
-            const continueAnyway = window.confirm(imageUploadUnsuccessfulMessage)
-            if (!continueAnyway) { return }
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error uploading the image. Do you want to continue without uploading the image?',
+                showCancelButton: true,
+                confirmButtonText: 'Continue Anyway',
+            }).then((result) => {
+                if (!result.isConfirmed) return
+                editUser(dispatch, getUpatedUser())
+                navigate('/users')
+            })
+            return
         }
 
         await editUser(dispatch, { ...getUpatedUser(), profileImageURL: uploadedImageURL })
