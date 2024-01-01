@@ -125,7 +125,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("Loggedin")]
+        [HttpGet("{userId:int}/Loggedin")]
         public IActionResult GetLoggedInUser()
         {
             int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int userId);

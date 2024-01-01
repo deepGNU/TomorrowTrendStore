@@ -30,6 +30,15 @@ export const getUserByIdAPI = async (userId) => {
     }
 }
 
+export const getLoggedInUserAPI = async (userId) => {
+    try {
+        const response = await api.get(`/users/${userId}/loggedin`);
+        return response.data;
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
 export const getUsersBySearchAPI = async (dispatch, searchQuery) => {
     try {
         dispatch(getUsersStart());
@@ -38,15 +47,6 @@ export const getUsersBySearchAPI = async (dispatch, searchQuery) => {
     }
     catch (error) {
         dispatch(getUsersFailure(error));
-        console.error(error.message);
-    }
-}
-
-export const getLoggedInUserAPI = async (dispatch) => {
-    try {
-        const response = await api.get('/users/loggedin');
-        return response.data;
-    } catch (error) {
         console.error(error.message);
     }
 }

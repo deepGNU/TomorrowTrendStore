@@ -1,6 +1,6 @@
 import './MyProfile.css'
 import React from 'react'
-import { getUserByIdAPI } from '../../api/resources/users'
+import { getLoggedInUserAPI } from '../../api/resources/users'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserToEdit } from '../../features/users/users-slice'
@@ -21,7 +21,7 @@ const MyProfile = () => {
 
     useEffect(() => {
         const fetchMyUser = async () => {
-            const user = await getUserByIdAPI(myId)
+            const user = await getLoggedInUserAPI(myId)
             setMyUser(user)
         }
         fetchMyUser()
@@ -33,12 +33,13 @@ const MyProfile = () => {
             <h1>{myUser?.username}</h1>
 
             <div className="user-details-div">
-
                 <img
                     className='my-profile-image' src={myUser?.profileImageURL ?? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='}
                     alt="Profile"
                 />
+
                 <BtnNeon text={'Edit Profile'} onClick={handleEditClick} />
+
                 <table className='user-details-table'>
                     <thead>
                         <tr>
@@ -79,7 +80,6 @@ const MyProfile = () => {
                     </tbody>
                 </table>
             </div>
-
         </div>
     )
 }
