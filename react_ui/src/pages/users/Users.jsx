@@ -35,7 +35,7 @@ const Users = () => {
                 <h1>Manage Users</h1>
                 <BtnNeon text={'Add User'} onClick={handleAddUserClick} />
             </div>
-            <div className='users-div container'>
+            <div className='users-div'>
                 {users.map(user => (
                     <User key={user.id} user={user} />
                 ))}

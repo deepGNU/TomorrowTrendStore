@@ -35,8 +35,10 @@ const Order = ({ order }) => {
             <p>Order Date: {order?.orderDate}</p>
             <p>Order Status: {order?.status}</p>
 
-            {(userRole === 'Admin') && <BtnNeon text={'Delete'} onClick={handleDelete} />}
-            {(['Admin', 'Worker'].includes(userRole)) && <BtnNeon text={'Edit'} onClick={handleEditClick} />}
+            <div className='btns-div'>
+                {(userRole === 'Admin') && <BtnNeon text={'Delete'} onClick={handleDelete} />}
+                {(['Admin', 'Worker'].includes(userRole)) && <BtnNeon text={'Edit'} onClick={handleEditClick} />}
+            </div>
         </div>
     )
 }
