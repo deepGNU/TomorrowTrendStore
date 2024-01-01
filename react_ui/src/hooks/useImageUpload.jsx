@@ -7,6 +7,8 @@ const useImageUpload = () => {
     const [imageFileToUploadURL, setFileURL] = useState();
     const [imageIsUploading, setIsUploading] = useState(false);
     const apiKey = process.env.REACT_APP_BYTESCALE_API_KEY
+    let uploadManager;
+    if (apiKey) uploadManager = new Bytescale.UploadManager({ apiKey });
 
     const handleImageChange = (e) => {
         setFile(e.target.files[0]);
@@ -20,22 +22,17 @@ const useImageUpload = () => {
         setFileURL(null)
     }
 
-    const uploadManager = new Bytescale.UploadManager({
-        apiKey,
-    });
-
     const handleImageUpload = async () => {
         try {
+            if (!apiKey) throw new Error("Missing API key");
             setIsUploading(true);
-            const { fileUrl, filePath } = await uploadManager.upload({
+            const { fileUrl } = await uploadManager.upload({
                 data: imageFileToUpload,
             });
-            console.log("Uploaded file to", fileUrl, filePath);
             setIsUploading(false);
             return fileUrl
         } catch (error) {
             console.error(error.message);
-            alert(error.message);
             setIsUploading(false);
             return null
         }
