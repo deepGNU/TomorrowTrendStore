@@ -7,8 +7,12 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="contact-info">
                     <h3>Contact Us</h3>
-                    <p>Email: contact@electronicsstore.com</p>
-                    <p>Phone: 123-456-7890</p>
+                    <p>Email:
+                        <a href="mailto:thehumbletheorist@gmail.com"> thehumbletheorist@gmail.com</a>
+                    </p>
+                    <p>Phone:
+                        <a href="tel:+972538226601"> 053-822-6601</a>
+                    </p>
                 </div>
                 <div className="social-links">
                     <h3>Follow Us</h3>

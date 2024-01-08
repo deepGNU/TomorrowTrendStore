@@ -22,6 +22,15 @@
     flex: 1;
 }
 
+.contact-info a {
+    color: var(--neon-blue);
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    color: var(--neon-pink);
+}
+
 .contact-info h3,
 .social-links h3 {
     font-size: 1.5em;
@@ -39,6 +48,7 @@
 }
 
 .social-icon {
+    color: #fff;
     display: inline-block;
     padding: 8px 15px;
     border: 2px solid #fff;
