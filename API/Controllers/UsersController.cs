@@ -132,7 +132,9 @@ namespace API.Controllers
 
             try
             {
-                var loggedInUser = _userRepo.FindByCondition(u => u.Id == userId).FirstOrDefault();
+                var loggedInUser = _userRepo.FindByCondition(u => u.Id == userId)
+                    .Include(u => u.Address)
+                    .FirstOrDefault();
 
                 if (loggedInUser is null)
                 {
@@ -149,11 +151,18 @@ namespace API.Controllers
         }
 
         [HttpPut("{userId:int}")]
-        [Authorize(Policy = "AdminOnly")]
         public IActionResult UpdateUser(int userId, User user)
         {
             try
             {
+                bool isAdmin = User.IsInRole("Admin");
+                bool isSelfUpdating = User.FindFirstValue(ClaimTypes.NameIdentifier) == userId.ToString();
+
+                if (!isAdmin && !isSelfUpdating)
+                {
+                    return Unauthorized();
+                }
+
                 if (user is null)
                 {
                     return BadRequest();
@@ -169,23 +178,14 @@ namespace API.Controllers
                     return BadRequest("ID in URL does not match user's ID.");
                 }
 
-                var existingUser = _userRepo.FindByCondition(u => u.Id == userId).FirstOrDefault();
-
-                if (existingUser is null)
+                bool userExists = _userRepo.FindByCondition(u => u.Id == userId).Any();
+                
+                if (!userExists)
                 {
                     return NotFound();
                 }
 
-                existingUser.Type = user.Type;
-                existingUser.Username = user.Username;
-                existingUser.FirstName = user.FirstName;
-                existingUser.LastName = user.LastName;
-                existingUser.Address = user.Address;
-                existingUser.Email = user.Email;
-                existingUser.PhoneNumber = user.PhoneNumber;
-                existingUser.ProfileImageURL = user.ProfileImageURL;
-
-                User updatedUser = _userRepo.Update(existingUser);
+                User updatedUser = _userRepo.Update(user);
 
                 return Ok(updatedUser);
             }
