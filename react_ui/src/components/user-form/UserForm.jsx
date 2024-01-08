@@ -34,8 +34,6 @@ const UserForm = () => {
                 />
 
                 <div className='right-section'>
-
-
                     {USER_TYPE_IDS[userRole] === 999 && (
                         <div className='user-form-field'>
                             <label htmlFor="type">Type</label>

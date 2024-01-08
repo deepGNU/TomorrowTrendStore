@@ -35,10 +35,6 @@ const useUserForm = () => {
     const passwordsMatch = password === confirmPassword;
 
     useEffect(() => {
-        console.log(imageIsUploading)
-    }, [imageIsUploading])
-
-    useEffect(() => {
         setType(userToEdit?.type)
         setUsername(userToEdit?.username)
         setFirstName(userToEdit?.firstName)
@@ -111,7 +107,9 @@ const useUserForm = () => {
             phoneNumber,
             profileImageURL,
             passwordHash: password ? password : userToEdit?.passwordHash,
-            address: userToEdit?.address ? userToEdit.address : {
+            address: {
+                id: userToEdit?.address?.id ?? 0,
+                userId: userToEdit?.id ?? 0,
                 addressLine,
                 city,
                 country: parseInt(country),
@@ -198,7 +196,7 @@ const useUserForm = () => {
 
         if (!imageFileToUpload) {
             await editUser(dispatch, getUpatedUser())
-            navigate('/users')
+            navigate(-1)
             dispatch(setUserToEdit(null))
             return
         }
@@ -215,13 +213,13 @@ const useUserForm = () => {
             }).then((result) => {
                 if (!result.isConfirmed) return
                 editUser(dispatch, getUpatedUser())
-                navigate('/users')
+                navigate(-1)
             })
             return
         }
 
         await editUser(dispatch, { ...getUpatedUser(), profileImageURL: uploadedImageURL })
-        navigate('/users')
+        navigate(-1)
     }
 
     return {
